@@ -32,7 +32,7 @@ export default function Hero()
       </FloatingSticker>
 
       <FloatingSticker
-        style={ { top: "75%", left: "4%", "--rot": "-6deg" } as any }
+        style={ { top: "90%", left: "4%", "--rot": "-6deg" } as any }
         delay="1s"
         bg="var(--sky)"
       >
