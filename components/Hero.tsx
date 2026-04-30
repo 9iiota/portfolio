@@ -58,7 +58,7 @@ export default function Hero() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/avatar.svg"
+          src="/avatar.jpg"
           alt="Burak Kiliç"
           style={{
             width: "100%",
