@@ -31,7 +31,7 @@ const projects = [
     accentText: "var(--paper)",
     rotate: "-0.5deg",
     year: "2025",
-    link: "#",
+    link: "",
   },
   {
     name: "Quran TikTok Generator",
@@ -53,7 +53,7 @@ const projects = [
     accent: "var(--hot-pink)",
     rotate: "-0.5deg",
     year: "2022",
-    link: "#",
+    link: "",
   },
   {
     name: "Fit+",
@@ -64,7 +64,7 @@ const projects = [
     accent: "var(--acid)",
     rotate: "0.5deg",
     year: "2023",
-    link: "#",
+    link: "",
   },
 ];
 
@@ -88,7 +88,7 @@ export default function Projects()
         { projects.map((p) => (
           <a
             key={ p.name }
-            href={ p.link || undefined }
+            href={ p.link }
             target={ p.link.startsWith("http") ? "_blank" : undefined }
             rel={ p.link.startsWith("http") ? "noopener noreferrer" : undefined }
             className="sticker"
