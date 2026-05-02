@@ -19,7 +19,7 @@ const projects = [
     accent: "var(--mint)",
     rotate: "1deg",
     year: "2024",
-    link: "#",
+    link: "",
   },
   {
     name: "NYC Taxi Forecasting",
@@ -68,9 +68,10 @@ const projects = [
   },
 ];
 
-export default function Projects() {
+export default function Projects()
+{
   return (
-    <section id="projects" style={{ padding: "6rem 0" }}>
+    <section id="projects" style={ { padding: "6rem 0" } }>
       <div className="section-eyebrow">projects</div>
       <h2 className="section-title">
         Things I've <br />
@@ -78,36 +79,36 @@ export default function Projects() {
       </h2>
 
       <div
-        style={{
+        style={ {
           display: "grid",
           gridTemplateColumns: "1fr",
           gap: "2rem",
-        }}
+        } }
       >
-        {projects.map((p) => (
+        { projects.map((p) => (
           <a
-            key={p.name}
-            href={p.link}
-            target={p.link.startsWith("http") ? "_blank" : undefined}
-            rel={p.link.startsWith("http") ? "noopener noreferrer" : undefined}
+            key={ p.name }
+            href={ p.link || undefined }
+            target={ p.link.startsWith("http") ? "_blank" : undefined }
+            rel={ p.link.startsWith("http") ? "noopener noreferrer" : undefined }
             className="sticker"
-            style={{
+            style={ {
               padding: 0,
               overflow: "hidden",
               display: "block",
-              transform: `rotate(${p.rotate})`,
-            }}
+              transform: `rotate(${ p.rotate })`,
+            } }
           >
             <div
-              style={{
+              style={ {
                 display: "grid",
                 gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.5fr)",
                 minHeight: 220,
-              }}
+              } }
             >
-              {/* Visual side */}
+              {/* Visual side */ }
               <div
-                style={{
+                style={ {
                   background: p.accent,
                   color: (p as any).accentText || "var(--ink)",
                   borderRight: "2.5px solid var(--ink)",
@@ -117,73 +118,73 @@ export default function Projects() {
                   justifyContent: "space-between",
                   position: "relative",
                   minHeight: 220,
-                }}
+                } }
               >
                 <div
                   className="mono"
-                  style={{ fontSize: 12, opacity: 0.7 }}
+                  style={ { fontSize: 12, opacity: 0.7 } }
                 >
-                  {p.year}
+                  { p.year }
                 </div>
                 <div
-                  style={{
+                  style={ {
                     fontSize: "clamp(2rem, 5vw, 3.5rem)",
                     fontWeight: 800,
                     lineHeight: 0.95,
                     letterSpacing: "-0.03em",
-                  }}
+                  } }
                 >
-                  {p.name}
+                  { p.name }
                 </div>
               </div>
 
-              {/* Content side */}
+              {/* Content side */ }
               <div
-                style={{
+                style={ {
                   padding: "2rem",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
                   gap: "1rem",
-                }}
+                } }
               >
                 <div>
                   <p
                     className="serif"
-                    style={{
+                    style={ {
                       fontSize: "1.4rem",
                       color: "var(--grape)",
                       marginBottom: "0.75rem",
                       lineHeight: 1.2,
-                    }}
+                    } }
                   >
-                    {p.tagline}
+                    { p.tagline }
                   </p>
-                  <p style={{ fontSize: "1rem", lineHeight: 1.55, opacity: 0.85 }}>
-                    {p.description}
+                  <p style={ { fontSize: "1rem", lineHeight: 1.55, opacity: 0.85 } }>
+                    { p.description }
                   </p>
                 </div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                  {p.tags.map((t) => (
+                <div style={ { display: "flex", flexWrap: "wrap", gap: 8 } }>
+                  { p.tags.map((t) => (
                     <span
-                      key={t}
+                      key={ t }
                       className="mono"
-                      style={{
+                      style={ {
                         fontSize: 11,
                         padding: "4px 10px",
                         background: "var(--bg)",
                         border: "1.5px solid var(--ink)",
                         borderRadius: 999,
-                      }}
+                      } }
                     >
-                      {t}
+                      { t }
                     </span>
-                  ))}
+                  )) }
                 </div>
               </div>
             </div>
           </a>
-        ))}
+        )) }
       </div>
     </section>
   );
