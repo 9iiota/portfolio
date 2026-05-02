@@ -88,7 +88,7 @@ export default function Projects()
         { projects.map((p) => (
           <a
             key={ p.name }
-            href={ p.link }
+            href={ p.link || undefined }
             target={ p.link.startsWith("http") ? "_blank" : undefined }
             rel={ p.link.startsWith("http") ? "noopener noreferrer" : undefined }
             className="sticker"
