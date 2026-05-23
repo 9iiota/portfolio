@@ -1,4 +1,5 @@
-export default function Hero() {
+export default function Hero()
+{
   return (
     <section className="hero" id="top">
       <div className="rise d1">
@@ -9,7 +10,7 @@ export default function Hero() {
       </div>
 
       <h1 className="hero-title rise d2">
-        Software developer{' '}
+        Software developer{ ' ' }
         <span className="muted">building tools, automation, and applications.</span>
       </h1>
 
@@ -25,10 +26,6 @@ export default function Hero() {
         <div>
           <div className="k">Studying</div>
           <div className="v">Informatica, HR</div>
-        </div>
-        <div>
-          <div className="k">Focus</div>
-          <div className="v">Python, JS/TS, web</div>
         </div>
       </div>
 

@@ -1,4 +1,5 @@
-export default function About() {
+export default function About()
+{
   return (
     <section id="about" className="section">
       <div className="section-head">
@@ -43,7 +44,7 @@ export default function About() {
             <div className="row"><div className="k">Year</div><div className="v">3rd year, Informatica</div></div>
             <div className="row"><div className="k">Languages</div><div className="v">NL, EN, TR, JP</div></div>
             <div className="row"><div className="k">Focus</div><div className="v">Web, automation, tooling</div></div>
-            <div className="row"><div className="k">Open to</div><div className="v">Internships, freelance</div></div>
+            <div className="row"><div className="k">Open to</div><div className="v">Internships and full-time positions</div></div>
           </aside>
         </div>
       </div>

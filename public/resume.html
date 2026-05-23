@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burak Kiliç — Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:   #0f0f0f;
+      --muted: #6b7280;
+      --rule:  #e5e7eb;
+      --accent:#111827;
+      --page:  21cm;
+    }
+
+    html { font-size: 10pt; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      max-width: 21cm;
+      margin: 0 auto;
+      padding: 1.6cm 1.8cm;
+      line-height: 1.5;
+    }
+
+    /* ── Header ─────────────────────────────────────────── */
+    .hd { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; margin-bottom: 1.4rem; }
+    .hd-left h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .hd-left .tagline { color: var(--muted); margin-top: 0.25rem; font-size: 0.95rem; }
+    .hd-right { text-align: right; font-size: 0.82rem; color: var(--muted); line-height: 1.7; flex-shrink: 0; }
+    .hd-right a { color: var(--ink); text-decoration: none; }
+    .hd-right a:hover { text-decoration: underline; }
+    .badge { display: inline-flex; align-items: center; gap: 0.35em; background: #f0fdf4; color: #16a34a; font-size: 0.75rem; font-weight: 500; padding: 0.18em 0.55em; border-radius: 999px; border: 1px solid #bbf7d0; margin-top: 0.3rem; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #16a34a; }
+
+    /* ── Bio ─────────────────────────────────────────────── */
+    .bio { font-size: 0.88rem; color: #374151; border-left: 2px solid var(--rule); padding-left: 0.9rem; margin-bottom: 1.5rem; }
+
+    /* ── Layout: two columns ─────────────────────────────── */
+    .cols { display: grid; grid-template-columns: 1fr 2.4fr; gap: 1.8rem; }
+
+    /* ── Section ─────────────────────────────────────────── */
+    section { margin-bottom: 1.4rem; }
+    section:last-child { margin-bottom: 0; }
+    .sec-title {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.3rem; margin-bottom: 0.8rem;
+    }
+
+    /* ── Skills ──────────────────────────────────────────── */
+    .skill-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.22rem 0; border-bottom: 1px solid #f3f4f6; font-size: 0.82rem; }
+    .skill-row:last-child { border-bottom: none; }
+    .skill-name { font-weight: 500; }
+    .skill-level { color: var(--muted); font-size: 0.75rem; }
+
+    /* ── Languages ───────────────────────────────────────── */
+    .lang-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.22rem 0; border-bottom: 1px solid #f3f4f6; font-size: 0.82rem; }
+    .lang-row:last-child { border-bottom: none; }
+    .lang-name { font-weight: 500; }
+    .lang-level { color: var(--muted); font-size: 0.75rem; }
+
+    /* ── CV items (experience + education) ───────────────── */
+    .cv-item { margin-bottom: 1rem; }
+    .cv-item:last-child { margin-bottom: 0; }
+    .cv-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.2rem; }
+    .cv-role { font-weight: 600; font-size: 0.88rem; }
+    .cv-org { font-weight: 400; color: var(--muted); }
+    .cv-meta { font-size: 0.75rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; text-align: right; }
+    .cv-body { font-size: 0.8rem; color: #374151; line-height: 1.55; }
+
+    /* ── Projects ────────────────────────────────────────── */
+    .proj-item { margin-bottom: 0.9rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--rule); }
+    .proj-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .proj-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.18rem; }
+    .proj-name { font-weight: 600; font-size: 0.88rem; }
+    .proj-year { font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+    .proj-lede { font-size: 0.79rem; color: #374151; line-height: 1.55; margin-bottom: 0.3rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+    .chip {
+      font-size: 0.68rem; padding: 0.1em 0.45em;
+      background: #f3f4f6; border-radius: 4px;
+      color: #374151; font-weight: 500;
+    }
+    .status-live   { color: #16a34a; font-size: 0.68rem; font-weight: 600; }
+    .status-school { color: #2563eb; font-size: 0.68rem; font-weight: 600; }
+    .status-arch   { color: #9ca3af; font-size: 0.68rem; font-weight: 600; }
+
+    /* ── Print ───────────────────────────────────────────── */
+    @media print {
+      html { font-size: 9.5pt; }
+      body { max-width: none; padding: 1.2cm 1.5cm; }
+      a { color: inherit !important; text-decoration: none !important; }
+      .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .chip  { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { margin: 0; size: A4; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="hd">
+    <div class="hd-left">
+      <h1>Burak Kili&#231;</h1>
+      <div class="tagline">Software Developer &mdash; tools, automation &amp; web</div>
+      <div class="badge"><span class="dot"></span> Available for internships &amp; freelance</div>
+    </div>
+    <div class="hd-right">
+      Rotterdam, NL<br>
+      <a href="mailto:burakkilicnl@gmail.com">burakkilicnl@gmail.com</a><br>
+      <a href="https://github.com/9iiota">github.com/9iiota</a><br>
+      <a href="https://linkedin.com/in/burak-kilic-nl">linkedin.com/in/burak-kilic-nl</a>
+    </div>
+  </header>
+
+  <!-- Bio -->
+  <p class="bio">
+    Third-year Informatica student at Hogeschool Rotterdam. I build Chrome extensions, automation
+    scripts, internal tools, and small applications. I&rsquo;ve shipped production work for a Mendix
+    consultancy and an e-commerce business I ran. Started coding to understand sneaker bots;
+    ended up studying it full-time.
+  </p>
+
+  <!-- Two-column body -->
+  <div class="cols">
+
+    <!-- Left column: Skills + Languages -->
+    <div>
+
+      <section>
+        <div class="sec-title">Technical Skills</div>
+        <div class="skill-row"><span class="skill-name">Python</span><span class="skill-level">Proficient</span></div>
+        <div class="skill-row"><span class="skill-name">JavaScript</span><span class="skill-level">Proficient</span></div>
+        <div class="skill-row"><span class="skill-name">HTML &amp; CSS</span><span class="skill-level">Proficient</span></div>
+        <div class="skill-row"><span class="skill-name">Mendix</span><span class="skill-level">Professional</span></div>
+        <div class="skill-row"><span class="skill-name">Git &amp; GitHub</span><span class="skill-level">Daily use</span></div>
+        <div class="skill-row"><span class="skill-name">REST APIs</span><span class="skill-level">Comfortable</span></div>
+        <div class="skill-row"><span class="skill-name">SQLite &amp; SQL</span><span class="skill-level">Comfortable</span></div>
+        <div class="skill-row"><span class="skill-name">Web scraping</span><span class="skill-level">Comfortable</span></div>
+        <div class="skill-row"><span class="skill-name">Java</span><span class="skill-level">Competent</span></div>
+        <div class="skill-row"><span class="skill-name">C#</span><span class="skill-level">Coursework</span></div>
+      </section>
+
+      <section>
+        <div class="sec-title">Languages</div>
+        <div class="lang-row"><span class="lang-name">Dutch</span><span class="lang-level">Native</span></div>
+        <div class="lang-row"><span class="lang-name">English</span><span class="lang-level">Fluent</span></div>
+        <div class="lang-row"><span class="lang-name">Turkish</span><span class="lang-level">Conversational</span></div>
+        <div class="lang-row"><span class="lang-name">Japanese</span><span class="lang-level">Beginner</span></div>
+      </section>
+
+    </div>
+
+    <!-- Right column: Experience + Education + Projects -->
+    <div>
+
+      <section>
+        <div class="sec-title">Experience</div>
+
+        <div class="cv-item">
+          <div class="cv-header">
+            <div>
+              <span class="cv-role">Junior Mendix Developer</span>
+              <span class="cv-org"> &mdash; Thorix B.V.</span>
+            </div>
+            <div class="cv-meta">2023 &ndash; 2024 &middot; Barendrecht, NL</div>
+          </div>
+          <div class="cv-body">Built Mendix applications for leave management, expense claims, project tracking, time registration, and QR-based reservation systems. Wrote custom microflows, integrated REST APIs, and built dynamic UI components.</div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-header">
+            <div>
+              <span class="cv-role">Founder</span>
+              <span class="cv-org"> &mdash; CandyVillage</span>
+            </div>
+            <div class="cv-meta">2023 &ndash; 2024 &middot; Online</div>
+          </div>
+          <div class="cv-body">Started and ran a Shopify-based store selling halal-certified candy. Sourced inventory, handled bookkeeping in Moneybird, and built the internal Python toolkit that automated most day-to-day operations.</div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-header">
+            <div>
+              <span class="cv-role">Founder</span>
+              <span class="cv-org"> &mdash; ikoProxies</span>
+            </div>
+            <div class="cv-meta">2020 &middot; Online</div>
+          </div>
+          <div class="cv-body">Sold datacenter proxies to sneaker resellers. Provisioned Linux servers over SSH and configured them to expose authenticated proxy endpoints. First real exposure to running infrastructure and paying customers.</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-title">Education</div>
+
+        <div class="cv-item">
+          <div class="cv-header">
+            <div>
+              <span class="cv-role">Informatica (HBO)</span>
+              <span class="cv-org"> &mdash; Hogeschool Rotterdam</span>
+            </div>
+            <div class="cv-meta">2020 &ndash; present &middot; Rotterdam, NL</div>
+          </div>
+          <div class="cv-body">3rd year. Coursework in OOP, algorithms &amp; data structures, operating systems, concurrency, software quality, functional programming, and modeling &amp; system analysis.</div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-header">
+            <div>
+              <span class="cv-role">HAVO diploma</span>
+              <span class="cv-org"> &mdash; Avicenna College</span>
+            </div>
+            <div class="cv-meta">Rotterdam, NL</div>
+          </div>
+          <div class="cv-body">Pre-university secondary education.</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-title">Selected Projects</div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">ICU Delirium Detection</span>
+            <span class="proj-year">2026 &middot; <span class="status-school">Capstone</span></span>
+          </div>
+          <div class="proj-lede">Capstone comparing Random Forest, XGBoost, and LSTM for early delirium detection using MIMIC-IV EHR data. Includes SHAP-based interpretability, demographic fairness analysis, and prediction ensemble. Team of four &mdash; targeting scientific publication.</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">PyTorch</span><span class="chip">SHAP</span><span class="chip">pandas</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">NYC Taxi Forecasting</span>
+            <span class="proj-year">2025 &middot; <span class="status-school">Coursework</span></span>
+          </div>
+          <div class="proj-lede">Team data-science project forecasting NYC green-taxi trip volumes (2017&ndash;2020) using weather and temporal features. Prophet benchmarked against gradient-boosted models with k-fold CV, deployed via Plotly Dash.</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Prophet</span><span class="chip">scikit-learn</span><span class="chip">Plotly Dash</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Prayer Times Chrome Extension</span>
+            <span class="proj-year">2025 &middot; <span class="status-live">Live</span> &middot; <a href="https://github.com/9iiota/prayer-times-namaz-vakitleri-extension">GitHub</a></span>
+          </div>
+          <div class="proj-lede">Chrome extension showing daily Islamic prayer times with live badge countdowns and configurable notifications. IslamicFinder API with Diyanet and IslamVakti fallbacks; OpenStreetMap Nominatim for geolocation. Published to Chrome Web Store.</div>
+          <div class="chips">
+            <span class="chip">JavaScript</span><span class="chip">Chrome API</span><span class="chip">OSM Nominatim</span><span class="chip">Web scraping</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Shopify Ops Toolkit</span>
+            <span class="proj-year">2024 &middot; <span class="status-arch">Archived</span></span>
+          </div>
+          <div class="proj-lede">Internal Python CLI for CandyVillage integrating Shopify, Moneybird, Google Drive/Sheets, and DPD. PyMuPDF for invoice parsing, pytest coverage. Replaced hours of weekly admin work.</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Shopify API</span><span class="chip">Moneybird API</span><span class="chip">Google APIs</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Quran TikTok Generator</span>
+            <span class="proj-year">2023 &middot; <span class="status-live">Live</span> &middot; <a href="https://github.com/9iiota/quran-tiktok-generator">GitHub</a></span>
+          </div>
+          <div class="proj-lede">Python tool generating short-form videos with Quranic recitation, synchronised Arabic text, and translations. MoviePy for composition, multithreading for parallel generation.</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">MoviePy</span><span class="chip">FuzzyWuzzy</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Fit+</span>
+            <span class="proj-year">2023 &middot; <span class="status-school">Coursework</span></span>
+          </div>
+          <div class="proj-lede">Python gym management system with role-based auth (super admin, system admin, trainer). SQLite with encrypted credentials, login attempt tracking, activity logging, and suspicious-activity detection.</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">SQLite</span><span class="chip">Cryptography</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">CinemaSharp</span>
+            <span class="proj-year">2022 &middot; <span class="status-school">Coursework</span></span>
+          </div>
+          <div class="proj-lede">C# console cinema booking system. Customers browse films by genre, pick seats, order snacks, complete bookings. Admins manage films and consumables. Pages &amp; Classes architecture with JSON persistence.</div>
+          <div class="chips">
+            <span class="chip">C#</span><span class="chip">.NET</span><span class="chip">JSON</span>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+
+</body>
+</html>
