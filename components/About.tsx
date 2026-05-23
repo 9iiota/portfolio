@@ -1,77 +1,52 @@
 export default function About() {
   return (
-    <section id="about" style={{ padding: "8rem 0 6rem" }}>
-      <div className="section-eyebrow">about</div>
-      <h2 className="section-title">
-        A few things <br />
-        about me.
-      </h2>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "1.5rem",
-        }}
-      >
-        <Card bg="var(--paper)" rotate="-1deg">
-          <div className="mono" style={{ fontSize: 12, marginBottom: 10, opacity: 0.6 }}>
-            01 / how it started
-          </div>
-          <p style={{ fontSize: "1.1rem", lineHeight: 1.55 }}>
-            I used to resell sneakers. The market was full of bots, and trying
-            to compete with them got me curious about how they worked. That
-            curiosity turned into{" "}
-            <strong>writing my own scripts</strong>, then writing software,
-            then studying it.
+    <section id="about" className="section">
+      <div className="section-head">
+        <div className="lead">
+          <span className="num">01 / About</span>
+          <h2>About me.</h2>
+          <p className="desc">
+            Background, what I work on, and what I do outside of it.
           </p>
-        </Card>
+        </div>
+        <span className="meta">~/about</span>
+      </div>
 
-        <Card bg="var(--acid)" rotate="1deg">
-          <div className="mono" style={{ fontSize: 12, marginBottom: 10, opacity: 0.7 }}>
-            02 / what I build
-          </div>
-          <p style={{ fontSize: "1.1rem", lineHeight: 1.55 }}>
-            Browser extensions, automation tools, gym management systems,
-            video generators. If something feels like a small repetitive
-            problem worth solving, I'll probably try to build a tool for it.
+      <div className="about-grid">
+        <div className="about-prose">
+          <p>
+            I started writing code in high school. I was reselling sneakers at the time and kept
+            losing drops to bots, which got me curious about how they worked. Trying to keep up
+            led me to Python, then to writing my own scripts, then to running a small business
+            selling proxies, and eventually to enrolling at Hogeschool Rotterdam to study it
+            properly.
           </p>
-        </Card>
+          <p>
+            Today I focus on web development and automation. I&apos;ve built and shipped a
+            Chrome extension to the Chrome Web Store, an internal Python toolkit that ran the
+            back office of an e-commerce store, and a handful of school and side projects in
+            C#, Java, and JavaScript. I worked at <span className="strong">Thorix</span> as a
+            junior Mendix developer for a year, building real applications used by real people.
+          </p>
+          <p>
+            Outside of work I lift, read, watch anime, and study Japanese.
+          </p>
+        </div>
 
-        <Card bg="var(--paper)" rotate="-0.5deg">
-          <div className="mono" style={{ fontSize: 12, marginBottom: 10, opacity: 0.6 }}>
-            03 / outside code
+        <div className="about-right">
+          <div className="about-photo">
+            <img src="/photo.jpg" alt="Burak Kiliç" />
           </div>
-          <p style={{ fontSize: "1.1rem", lineHeight: 1.55 }}>
-            Lifting weights, reading, gaming, anime &amp; manga, and slowly
-            chipping away at learning Japanese. The stuff I do for fun has a
-            lot more discipline involved than people usually expect.
-          </p>
-        </Card>
+          <aside className="about-facts">
+            <div className="row"><div className="k">Location</div><div className="v">Rotterdam, NL</div></div>
+            <div className="row"><div className="k">Education</div><div className="v">Hogeschool Rotterdam</div></div>
+            <div className="row"><div className="k">Year</div><div className="v">3rd year, Informatica</div></div>
+            <div className="row"><div className="k">Languages</div><div className="v">NL, EN, TR, JP</div></div>
+            <div className="row"><div className="k">Focus</div><div className="v">Web, automation, tooling</div></div>
+            <div className="row"><div className="k">Open to</div><div className="v">Internships, freelance</div></div>
+          </aside>
+        </div>
       </div>
     </section>
-  );
-}
-
-function Card({
-  children,
-  bg,
-  rotate,
-}: {
-  children: React.ReactNode;
-  bg: string;
-  rotate: string;
-}) {
-  return (
-    <div
-      className="sticker"
-      style={{
-        background: bg,
-        padding: "1.75rem",
-        transform: `rotate(${rotate})`,
-      }}
-    >
-      {children}
-    </div>
   );
 }

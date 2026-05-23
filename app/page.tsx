@@ -1,25 +1,27 @@
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
-import Languages from "@/components/Languages";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
-import Contact from "@/components/Contact";
-import Nav from "@/components/Nav";
+import Nav from '@/components/Nav';
+import Hero from '@/components/Hero';
+import About from '@/components/About';
+import Work from '@/components/Work';
+import Stack from '@/components/Stack';
+import Languages from '@/components/Languages';
+import CV from '@/components/CV';
+import Contact from '@/components/Contact';
+import Foot from '@/components/Foot';
 
 export default function Home() {
   return (
     <>
       <Nav />
-      <main>
+      <main className="shell">
         <Hero />
         <About />
-        <Skills />
+        <Work />
+        <Stack />
         <Languages />
-        <Projects />
-        <Experience />
+        <CV />
         <Contact />
       </main>
+      <Foot />
     </>
   );
 }
