@@ -29,12 +29,15 @@
       line-height: 1.5;
     }
 
+    /* Underline all links so they're recognisable as clickable. */
+    a { color: var(--ink); text-decoration: underline; }
+
     /* ── Header ─────────────────────────────────────────── */
     .hd { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; margin-bottom: 1.4rem; }
     .hd-left h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
     .hd-left .tagline { color: var(--muted); margin-top: 0.25rem; font-size: 0.95rem; }
     .hd-right { text-align: right; font-size: 0.82rem; color: var(--muted); line-height: 1.7; flex-shrink: 0; }
-    .hd-right a { color: var(--ink); text-decoration: none; }
+    .hd-right a { color: var(--ink); text-decoration: underline; }
     .hd-right a:hover { text-decoration: underline; }
     .badge { display: inline-flex; align-items: center; gap: 0.35em; background: #f0fdf4; color: #16a34a; font-size: 0.75rem; font-weight: 500; padding: 0.18em 0.55em; border-radius: 999px; border: 1px solid #bbf7d0; margin-top: 0.3rem; }
     .dot { width: 6px; height: 6px; border-radius: 50%; background: #16a34a; }
@@ -97,10 +100,63 @@
     @media print {
       html { font-size: 9.5pt; }
       body { max-width: none; padding: 1.2cm 1.5cm; }
-      a { color: inherit !important; text-decoration: none !important; }
+      a { color: inherit !important; }
       .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .chip  { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       @page { margin: 0; size: A4; }
+
+      /* CSS Grid splits poorly across pages in most print engines.
+         Switch the two-column body to flexbox for print only;
+         visual result is the same, but page breaks work properly. */
+      .cols {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.8rem;
+      }
+      .cols > div:first-child { flex: 1 1 0; min-width: 0; }
+      .cols > div:last-child  { flex: 2.4 1 0; min-width: 0; }
+
+      /* Keep atomic blocks together: never split these across pages. */
+      .hd,
+      .bio,
+      .cv-item,
+      .proj-item,
+      .skill-row,
+      .lang-row {
+        break-inside: avoid;
+        page-break-inside: avoid; /* legacy alias, still respected */
+      }
+
+      /* Section can split across pages (so its items can flow to page 2),
+         but the heading itself must stick to whatever follows it. */
+      .sec-title {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      /* Continuation header: hidden until JS reveals it before the
+         project that gets pushed to page 2. */
+      .sec-continued {
+        display: none;
+      }
+      .sec-continued.active {
+        display: block;
+        break-before: page;
+        page-break-before: always;
+        /* Match the body's top padding so page 2 has the same top gap
+           as page 1. @page margin is 0, so we add the space here. */
+        padding-top: 1.2cm;
+      }
+
+      /* Headings inside cv/proj items should stick to their body text. */
+      .cv-header,
+      .proj-header {
+        break-after: avoid;
+        page-break-after: avoid;
+      }
     }
   </style>
 </head>
@@ -110,20 +166,20 @@
   <header class="hd">
     <div class="hd-left">
       <h1>Burak Kili&#231;</h1>
-      <div class="tagline">Software Developer &mdash; tools, automation &amp; web</div>
-      <div class="badge"><span class="dot"></span> Available for internships &amp; freelance</div>
+      <div class="tagline">Software Developer &mdash; tools, automation &amp; applications</div>
     </div>
     <div class="hd-right">
       Rotterdam, NL<br>
+      Born 18/08/2002, Rotterdam<br>
       <a href="mailto:burakkilicnl@gmail.com">burakkilicnl@gmail.com</a><br>
       <a href="https://github.com/9iiota">github.com/9iiota</a><br>
-      <a href="https://linkedin.com/in/burak-kilic-nl">linkedin.com/in/burak-kilic-nl</a>
+      <a href="https://www.burak-kilic.com/">burak-kilic.com</a>
     </div>
   </header>
 
   <!-- Bio -->
   <p class="bio">
-    Third-year Informatica student at Hogeschool Rotterdam. I build Chrome extensions, automation
+    Third-year Informatica student at Rotterdam University of Applied Sciences. I build Chrome extensions, automation
     scripts, internal tools, and small applications. I&rsquo;ve shipped production work for a Mendix
     consultancy and an e-commerce business I ran. Started coding to understand sneaker bots;
     ended up studying it full-time.
@@ -206,7 +262,7 @@
           <div class="cv-header">
             <div>
               <span class="cv-role">Informatica (HBO)</span>
-              <span class="cv-org"> &mdash; Hogeschool Rotterdam</span>
+              <span class="cv-org"> &mdash; Rotterdam University of Applied Sciences</span>
             </div>
             <div class="cv-meta">2020 &ndash; present &middot; Rotterdam, NL</div>
           </div>
@@ -225,7 +281,7 @@
         </div>
       </section>
 
-      <section>
+      <section id="projects-section">
         <div class="sec-title">Selected Projects</div>
 
         <div class="proj-item">
@@ -309,5 +365,62 @@
     </div>
   </div>
 
+  <script>
+    // Before printing, figure out which project item gets pushed onto a
+    // new page and insert a continuation header right before it.
+    // Pure CSS can't do this in Chrome, so we measure positions at print time.
+    function prepareForPrint() {
+      cleanup();
+
+      const section = document.getElementById('projects-section');
+      if (!section) return;
+      const items = section.querySelectorAll('.proj-item');
+      if (items.length === 0) return;
+
+      // A4 at 96dpi is roughly 1123px tall. Body has 1.2cm top + bottom
+      // padding in print (about 45px each). We approximate the printable
+      // page height to decide where the page break will fall.
+      // We detect the break by checking the document's offsetHeight against
+      // page-sized chunks.
+      const PAGE_HEIGHT_PX = 1123; // A4 at 96dpi
+      const TOP_MARGIN_PX  = 45;   // 1.2cm
+      const BOT_MARGIN_PX  = 45;
+      const usable = PAGE_HEIGHT_PX - TOP_MARGIN_PX - BOT_MARGIN_PX;
+
+      // Find first project whose top in the document crosses a page boundary.
+      // We treat the body's padding-top as the start of page 1's content.
+      const bodyTopPad = TOP_MARGIN_PX;
+
+      let firstOverflow = null;
+      for (const item of items) {
+        const top    = item.offsetTop;
+        const bottom = top + item.offsetHeight;
+        // Which page does the top of this item fall on (1-indexed)?
+        const topPage = Math.floor((top - bodyTopPad) / usable) + 1;
+        const botPage = Math.floor((bottom - bodyTopPad) / usable) + 1;
+        // First item that lives on page 2 or later is our target.
+        if (topPage > 1) { firstOverflow = item; break; }
+        // Or an item that itself straddles a boundary (break-inside: avoid
+        // will push it down anyway, so treat it as the overflow target).
+        if (botPage > topPage) { firstOverflow = item; break; }
+      }
+
+      if (!firstOverflow) return;
+
+      // Insert continuation header right before the overflow item.
+      const header = document.createElement('div');
+      header.className = 'sec-continued active';
+      header.innerHTML = '<div class="sec-title">Selected Projects (continued)</div>';
+      header.dataset.injected = '1';
+      firstOverflow.parentNode.insertBefore(header, firstOverflow);
+    }
+
+    function cleanup() {
+      document.querySelectorAll('[data-injected="1"]').forEach(n => n.remove());
+    }
+
+    window.addEventListener('beforeprint', prepareForPrint);
+    window.addEventListener('afterprint', cleanup);
+  </script>
 </body>
 </html>

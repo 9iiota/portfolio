@@ -2,13 +2,6 @@ export default function Hero()
 {
   return (
     <section className="hero" id="top">
-      <div className="rise d1">
-        <div className="hero-status">
-          <span className="dot" />
-          <span>Available for new opportunities</span>
-        </div>
-      </div>
-
       <h1 className="hero-title rise d2">
         Software developer{ ' ' }
         <span className="muted">building tools, automation, and applications.</span>
@@ -25,13 +18,13 @@ export default function Hero()
         </div>
         <div>
           <div className="k">Studying</div>
-          <div className="v">Informatica, HR</div>
+          <div className="v">Informatica, RUAS</div>
         </div>
       </div>
 
       <p className="hero-bio rise d4">
         I build Chrome extensions, automation scripts, internal tools, and small applications.
-        Third-year Informatica student at Hogeschool Rotterdam. I&apos;ve shipped production
+        Third-year Informatica student at Rotterdam University of Applied Sciences. I&apos;ve shipped production
         work for a Mendix consultancy and an e-commerce business I ran.
       </p>
 

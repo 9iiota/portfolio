@@ -19,7 +19,7 @@ export default function About()
             I started writing code in high school. I was reselling sneakers at the time and kept
             losing drops to bots, which got me curious about how they worked. Trying to keep up
             led me to Python, then to writing my own scripts, then to running a small business
-            selling proxies, and eventually to enrolling at Hogeschool Rotterdam to study it
+            selling proxies, and eventually to enrolling at Rotterdam University of Applied Sciences to study it
             properly.
           </p>
           <p>
@@ -40,10 +40,10 @@ export default function About()
           </div>
           <aside className="about-facts">
             <div className="row"><div className="k">Location</div><div className="v">Rotterdam, NL</div></div>
-            <div className="row"><div className="k">Education</div><div className="v">Hogeschool Rotterdam</div></div>
+            <div className="row"><div className="k">Education</div><div className="v">Rotterdam University of Applied Sciences</div></div>
             <div className="row"><div className="k">Year</div><div className="v">3rd year, Informatica</div></div>
             <div className="row"><div className="k">Languages</div><div className="v">NL, EN, TR, JP</div></div>
-            <div className="row"><div className="k">Focus</div><div className="v">Web, automation, tooling</div></div>
+            <div className="row"><div className="k">Focus</div><div className="v">Tools, automation, applications</div></div>
             <div className="row"><div className="k">Open to</div><div className="v">Internships and full-time positions</div></div>
           </aside>
         </div>

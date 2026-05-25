@@ -36,8 +36,8 @@ const items: Item[] = [
   {
     when: '2020 — present',
     role: 'Informatica student',
-    org: 'Hogeschool Rotterdam',
-    orgLink: 'https://www.hogeschoolrotterdam.nl',
+    org: 'Rotterdam University of Applied Sciences',
+    orgLink: 'https://www.rotterdamuas.com',
     where: 'Rotterdam, NL',
     body:
       'Coursework in OOP, algorithms and data structures, operating systems, concurrency, software quality, functional programming, and modeling and system analysis.',
@@ -51,7 +51,8 @@ const items: Item[] = [
   },
 ];
 
-export default function CV() {
+export default function CV()
+{
   return (
     <section id="cv" className="section">
       <div className="section-head">
@@ -62,25 +63,25 @@ export default function CV() {
       </div>
 
       <div className="cv-list">
-        {items.map((i) => (
-          <div key={i.role + i.org} className="cv-item">
-            <div className="cv-when">{i.when}</div>
+        { items.map((i) => (
+          <div key={ i.role + i.org } className="cv-item">
+            <div className="cv-when">{ i.when }</div>
             <div className="cv-body">
               <h4>
-                {i.role} <span className="at">at</span>{' '}
-                {i.orgLink ? (
-                  <a href={i.orgLink} target="_blank" rel="noopener noreferrer">
-                    {i.org}
+                { i.role } <span className="at">at</span>{ ' ' }
+                { i.orgLink ? (
+                  <a href={ i.orgLink } target="_blank" rel="noopener noreferrer">
+                    { i.org }
                   </a>
                 ) : (
                   i.org
-                )}
+                ) }
               </h4>
-              <p>{i.body}</p>
+              <p>{ i.body }</p>
             </div>
-            <div className="cv-where">{i.where}</div>
+            <div className="cv-where">{ i.where }</div>
           </div>
-        ))}
+        )) }
       </div>
     </section>
   );
