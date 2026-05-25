@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burak Kiliç — CV</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:   #0f0f0f;
+      --muted: #6b7280;
+      --rule:  #e5e7eb;
+      --accent:#111827;
+      --page:  21cm;
+    }
+
+    html { font-size: 10pt; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      max-width: 21cm;
+      margin: 0 auto;
+      padding: 1.6cm 1.8cm;
+      line-height: 1.5;
+    }
+
+    /* Underline all links so they're recognisable as clickable. */
+    a { color: var(--ink); text-decoration: underline; }
+
+    /* ── Header ─────────────────────────────────────────── */
+    .hd { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; margin-bottom: 1.4rem; }
+    .hd-left h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .hd-left .tagline { color: var(--muted); margin-top: 0.25rem; font-size: 0.95rem; }
+    .hd-right { text-align: right; font-size: 0.82rem; color: var(--muted); line-height: 1.7; flex-shrink: 0; }
+    .hd-right a { color: var(--ink); text-decoration: underline; }
+    .hd-right a:hover { text-decoration: underline; }
+    .badge { display: inline-flex; align-items: center; gap: 0.35em; background: #f0fdf4; color: #16a34a; font-size: 0.75rem; font-weight: 500; padding: 0.18em 0.55em; border-radius: 999px; border: 1px solid #bbf7d0; margin-top: 0.3rem; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #16a34a; }
+
+    /* ── Bio ─────────────────────────────────────────────── */
+    .bio { font-size: 0.88rem; color: #374151; border-left: 2px solid var(--rule); padding-left: 0.9rem; margin-bottom: 1.5rem; }
+
+    /* ── Layout: two columns ─────────────────────────────── */
+    .cols { display: grid; grid-template-columns: 1fr 2.4fr; gap: 1.8rem; }
+
+    /* ── Section ─────────────────────────────────────────── */
+    section { margin-bottom: 1.4rem; }
+    section:last-child { margin-bottom: 0; }
+    .sec-title {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.3rem; margin-bottom: 0.8rem;
+    }
+
+    /* ── Skills ──────────────────────────────────────────── */
+    .skill-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.22rem 0; border-bottom: 1px solid #f3f4f6; font-size: 0.82rem; }
+    .skill-row:last-child { border-bottom: none; }
+    .skill-name { font-weight: 500; }
+    .skill-level { color: var(--muted); font-size: 0.75rem; }
+
+    /* ── Languages ───────────────────────────────────────── */
+    .lang-row { display: flex; justify-content: space-between; align-items: baseline; padding: 0.22rem 0; border-bottom: 1px solid #f3f4f6; font-size: 0.82rem; }
+    .lang-row:last-child { border-bottom: none; }
+    .lang-name { font-weight: 500; }
+    .lang-level { color: var(--muted); font-size: 0.75rem; }
+
+    /* ── CV items (experience + education) ───────────────── */
+    .cv-item { margin-bottom: 1rem; }
+    .cv-item:last-child { margin-bottom: 0; }
+    .cv-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.2rem; }
+    .cv-role { font-weight: 600; font-size: 0.88rem; }
+    .cv-org { font-weight: 400; color: var(--muted); }
+    .cv-meta { font-size: 0.75rem; color: var(--muted); white-space: nowrap; flex-shrink: 0; text-align: right; }
+    .cv-body { font-size: 0.8rem; color: #374151; line-height: 1.55; }
+
+    /* ── Projects ────────────────────────────────────────── */
+    .proj-item { margin-bottom: 0.9rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--rule); }
+    .proj-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .proj-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; margin-bottom: 0.18rem; }
+    .proj-name { font-weight: 600; font-size: 0.88rem; }
+    .proj-year { font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+    .proj-lede { font-size: 0.79rem; color: #374151; line-height: 1.55; margin-bottom: 0.3rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+    .chip {
+      font-size: 0.68rem; padding: 0.1em 0.45em;
+      background: #f3f4f6; border-radius: 4px;
+      color: #374151; font-weight: 500;
+    }
+    .status-live   { color: #16a34a; font-size: 0.68rem; font-weight: 600; }
+    .status-school { color: #2563eb; font-size: 0.68rem; font-weight: 600; }
+    .status-arch   { color: #9ca3af; font-size: 0.68rem; font-weight: 600; }
+
+    /* ── Print ───────────────────────────────────────────── */
+    @media print {
+      html { font-size: 9.5pt; }
+      body { max-width: none; padding: 1.2cm 1.5cm; }
+      a { color: inherit !important; }
+      .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .chip  { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { margin: 0; size: A4; }
+
+      /* CSS Grid splits poorly across pages in most print engines.
+         Switch the two-column body to flexbox for print only;
+         visual result is the same, but page breaks work properly. */
+      .cols {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1.8rem;
+      }
+      .cols > div:first-child { flex: 1 1 0; min-width: 0; }
+      .cols > div:last-child  { flex: 2.4 1 0; min-width: 0; }
+
+      /* Keep atomic blocks together: never split these across pages. */
+      .hd,
+      .bio,
+      .cv-item,
+      .proj-item,
+      .skill-row,
+      .lang-row {
+        break-inside: avoid;
+        page-break-inside: avoid; /* legacy alias, still respected */
+      }
+
+      /* Section can split across pages (so its items can flow to page 2),
+         but the heading itself must stick to whatever follows it. */
+      .sec-title {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      /* Continuation header: hidden until JS reveals it before the
+         project that gets pushed to page 2. */
+      .sec-continued {
+        display: none;
+      }
+      .sec-continued.active {
+        display: block;
+        break-before: page;
+        page-break-before: always;
+        /* Match the body's top padding so page 2 has the same top gap
+           as page 1. @page margin is 0, so we add the space here. */
+        padding-top: 1.2cm;
+      }
+
+      /* Headings inside cv/proj items should stick to their body text. */
+      .cv-header,
+      .proj-header {
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="hd">
+    <div class="hd-left">
+      <h1>Burak Kili&#231;</h1>
+      <div class="tagline">Software Developer &mdash; tools, automatisering &amp; applicaties</div>
+    </div>
+    <div class="hd-right">
+      Rotterdam, NL<br>
+      Geboren 18-08-2002, Rotterdam<br>
+      <a href="mailto:burakkilicnl@gmail.com">burakkilicnl@gmail.com</a><br>
+      <a href="https://github.com/9iiota">github.com/9iiota</a><br>
+      <a href="https://www.burak-kilic.com/">burak-kilic.com</a>
+    </div>
+  </header>
+
+  <!-- Bio -->
+  <p class="bio">
+    Derdejaars Informatica-student aan Hogeschool Rotterdam. Ik bouw Chrome-extensies, automatiseringsscripts,
+    interne tools en kleine applicaties. Ik heb productiewerk geleverd voor een Mendix-consultancy en een
+    eigen e-commercebedrijf. Begonnen met programmeren om sneakerbots te begrijpen; uiteindelijk er fulltime
+    in gaan studeren.
+  </p>
+
+  <!-- Two-column body -->
+  <div class="cols">
+
+    <!-- Left column: Skills + Languages -->
+    <div>
+
+      <section>
+        <div class="sec-title">Vaardigheden</div>
+        <div class="skill-row"><span class="skill-name">Python</span><span class="skill-level">Gevorderd</span></div>
+        <div class="skill-row"><span class="skill-name">JavaScript</span><span class="skill-level">Gevorderd</span></div>
+        <div class="skill-row"><span class="skill-name">HTML &amp; CSS</span><span class="skill-level">Gevorderd</span></div>
+        <div class="skill-row"><span class="skill-name">Mendix</span><span class="skill-level">Professioneel</span></div>
+        <div class="skill-row"><span class="skill-name">Git &amp; GitHub</span><span class="skill-level">Dagelijks gebruik</span></div>
+        <div class="skill-row"><span class="skill-name">REST API's</span><span class="skill-level">Comfortabel</span></div>
+        <div class="skill-row"><span class="skill-name">SQLite &amp; SQL</span><span class="skill-level">Comfortabel</span></div>
+        <div class="skill-row"><span class="skill-name">Webscraping</span><span class="skill-level">Comfortabel</span></div>
+        <div class="skill-row"><span class="skill-name">Java</span><span class="skill-level">Basis</span></div>
+        <div class="skill-row"><span class="skill-name">C#</span><span class="skill-level">Vanuit studie</span></div>
+      </section>
+
+      <section>
+        <div class="sec-title">Talen</div>
+        <div class="lang-row"><span class="lang-name">Nederlands</span><span class="lang-level">Moedertaal</span></div>
+        <div class="lang-row"><span class="lang-name">Engels</span><span class="lang-level">Vloeiend</span></div>
+        <div class="lang-row"><span class="lang-name">Turks</span><span class="lang-level">Conversationeel</span></div>
+        <div class="lang-row"><span class="lang-name">Japans</span><span class="lang-level">Beginner</span></div>
+      </section>
+
+    </div>
+
+    <!-- Right column: Experience + Education + Projects -->
+    <div>
+
+      <section>
+        <div class="sec-title">Werkervaring</div>
+
+        <div class="cv-item">
+          <div class="cv-header">
+            <div>
+              <span class="cv-role">Junior Mendix Developer</span>
+              <span class="cv-org"> &mdash; Thorix B.V.</span>
+            </div>
+            <div class="cv-meta">2023 &ndash; 2024 &middot; Barendrecht, NL</div>
+          </div>
+          <div class="cv-body">Mendix-applicaties gebouwd voor verlofbeheer, declaraties, projecttracking, urenregistratie en QR-gebaseerde reserveringssystemen. Custom microflows geschreven, REST API's geïntegreerd en dynamische UI-componenten gebouwd.</div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-header">
+            <div>
+              <span class="cv-role">Oprichter</span>
+              <span class="cv-org"> &mdash; CandyVillage</span>
+            </div>
+            <div class="cv-meta">2023 &ndash; 2024 &middot; Online</div>
+          </div>
+          <div class="cv-body">Een Shopify-webshop opgezet en gerund voor de verkoop van halal-gecertificeerd snoep. Voorraad ingekocht, boekhouding in Moneybird gedaan en een interne Python-toolkit gebouwd die het grootste deel van de dagelijkse handelingen automatiseerde.</div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-header">
+            <div>
+              <span class="cv-role">Oprichter</span>
+              <span class="cv-org"> &mdash; ikoProxies</span>
+            </div>
+            <div class="cv-meta">2020 &middot; Online</div>
+          </div>
+          <div class="cv-body">Datacenter-proxy's verkocht aan sneaker-resellers. Linux-servers via SSH geconfigureerd om geauthenticeerde proxy-endpoints aan te bieden. Eerste echte ervaring met infrastructuurbeheer en betalende klanten.</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-title">Opleiding</div>
+
+        <div class="cv-item">
+          <div class="cv-header">
+            <div>
+              <span class="cv-role">Informatica (HBO)</span>
+              <span class="cv-org"> &mdash; Hogeschool Rotterdam</span>
+            </div>
+            <div class="cv-meta">2020 &ndash; heden &middot; Rotterdam, NL</div>
+          </div>
+          <div class="cv-body">3e jaar. Vakken in OOP, algoritmen &amp; datastructuren, besturingssystemen, concurrency, softwarekwaliteit, functioneel programmeren en modelleren &amp; systeemanalyse.</div>
+        </div>
+
+        <div class="cv-item">
+          <div class="cv-header">
+            <div>
+              <span class="cv-role">HAVO-diploma</span>
+              <span class="cv-org"> &mdash; Avicenna College</span>
+            </div>
+            <div class="cv-meta">Rotterdam, NL</div>
+          </div>
+          <div class="cv-body">Voortgezet onderwijs.</div>
+        </div>
+      </section>
+
+      <section id="projects-section">
+        <div class="sec-title">Geselecteerde Projecten</div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">ICU Delirium Detection</span>
+            <span class="proj-year">2026 &middot; <span class="status-school">Afstudeerproject</span></span>
+          </div>
+          <div class="proj-lede">Afstudeeronderzoek waarin Random Forest, XGBoost en LSTM worden vergeleken voor vroege deliriumdetectie op basis van MIMIC-IV EHR-data. Inclusief SHAP-interpreteerbaarheid, demografische fairness-analyse en een voorspellingsensemble. Team van vier &mdash; gericht op wetenschappelijke publicatie.</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">PyTorch</span><span class="chip">SHAP</span><span class="chip">pandas</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">NYC Taxi Forecasting</span>
+            <span class="proj-year">2025 &middot; <span class="status-school">Schoolproject</span></span>
+          </div>
+          <div class="proj-lede">Data science-teamproject dat het aantal NYC green-taxi-ritten (2017&ndash;2020) voorspelt op basis van weer- en tijdsfeatures. Prophet vergeleken met gradient-boosted modellen met k-fold cross-validatie, uitgerold via Plotly Dash.</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Prophet</span><span class="chip">scikit-learn</span><span class="chip">Plotly Dash</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Prayer Times Chrome Extension</span>
+            <span class="proj-year">2025 &middot; <span class="status-live">Live</span> &middot; <a href="https://github.com/9iiota/prayer-times-namaz-vakitleri-extension">GitHub</a></span>
+          </div>
+          <div class="proj-lede">Chrome-extensie die dagelijkse islamitische gebedstijden toont met live badge-countdowns en instelbare meldingen. IslamicFinder API met Diyanet en IslamVakti als fallback; OpenStreetMap Nominatim voor geolocatie. Gepubliceerd in de Chrome Web Store.</div>
+          <div class="chips">
+            <span class="chip">JavaScript</span><span class="chip">Chrome API</span><span class="chip">OSM Nominatim</span><span class="chip">Webscraping</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Shopify Ops Toolkit</span>
+            <span class="proj-year">2024 &middot; <span class="status-arch">Gearchiveerd</span></span>
+          </div>
+          <div class="proj-lede">Interne Python-CLI voor CandyVillage met integraties voor Shopify, Moneybird, Google Drive/Sheets en DPD. PyMuPDF voor factuurparsing, pytest voor testdekking. Verving uren aan wekelijks administratief werk.</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Shopify API</span><span class="chip">Moneybird API</span><span class="chip">Google APIs</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Quran TikTok Generator</span>
+            <span class="proj-year">2023 &middot; <span class="status-live">Live</span> &middot; <a href="https://github.com/9iiota/quran-tiktok-generator">GitHub</a></span>
+          </div>
+          <div class="proj-lede">Python-tool die korte video's genereert met Koranrecitaties, gesynchroniseerde Arabische tekst en vertalingen. MoviePy voor compositie, multithreading voor parallelle generatie.</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">MoviePy</span><span class="chip">FuzzyWuzzy</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">Fit+</span>
+            <span class="proj-year">2023 &middot; <span class="status-school">Schoolproject</span></span>
+          </div>
+          <div class="proj-lede">Python-systeem voor sportschoolbeheer met rolgebaseerde authenticatie (super admin, system admin, trainer). SQLite met versleutelde credentials, logregistratie van inlogpogingen, activiteitenlogging en detectie van verdachte activiteit.</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">SQLite</span><span class="chip">Cryptography</span>
+          </div>
+        </div>
+
+        <div class="proj-item">
+          <div class="proj-header">
+            <span class="proj-name">CinemaSharp</span>
+            <span class="proj-year">2022 &middot; <span class="status-school">Schoolproject</span></span>
+          </div>
+          <div class="proj-lede">C#-consoleapplicatie voor bioscoopreserveringen. Klanten bladeren door films op genre, kiezen stoelen, bestellen snacks en ronden boekingen af. Beheerders beheren films en consumpties. Pages &amp; Classes-architectuur met JSON-opslag.</div>
+          <div class="chips">
+            <span class="chip">C#</span><span class="chip">.NET</span><span class="chip">JSON</span>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // Before printing, figure out which project item gets pushed onto a
+    // new page and insert a continuation header right before it.
+    // Pure CSS can't do this in Chrome, so we measure positions at print time.
+    function prepareForPrint() {
+      cleanup();
+
+      const section = document.getElementById('projects-section');
+      if (!section) return;
+      const items = section.querySelectorAll('.proj-item');
+      if (items.length === 0) return;
+
+      // A4 at 96dpi is roughly 1123px tall. Body has 1.2cm top + bottom
+      // padding in print (about 45px each). We approximate the printable
+      // page height to decide where the page break will fall.
+      // We detect the break by checking the document's offsetHeight against
+      // page-sized chunks.
+      const PAGE_HEIGHT_PX = 1123; // A4 at 96dpi
+      const TOP_MARGIN_PX  = 45;   // 1.2cm
+      const BOT_MARGIN_PX  = 45;
+      const usable = PAGE_HEIGHT_PX - TOP_MARGIN_PX - BOT_MARGIN_PX;
+
+      // Find first project whose top in the document crosses a page boundary.
+      // We treat the body's padding-top as the start of page 1's content.
+      const bodyTopPad = TOP_MARGIN_PX;
+
+      let firstOverflow = null;
+      for (const item of items) {
+        const top    = item.offsetTop;
+        const bottom = top + item.offsetHeight;
+        // Which page does the top of this item fall on (1-indexed)?
+        const topPage = Math.floor((top - bodyTopPad) / usable) + 1;
+        const botPage = Math.floor((bottom - bodyTopPad) / usable) + 1;
+        // First item that lives on page 2 or later is our target.
+        if (topPage > 1) { firstOverflow = item; break; }
+        // Or an item that itself straddles a boundary (break-inside: avoid
+        // will push it down anyway, so treat it as the overflow target).
+        if (botPage > topPage) { firstOverflow = item; break; }
+      }
+
+      if (!firstOverflow) return;
+
+      // Insert continuation header right before the overflow item.
+      const header = document.createElement('div');
+      header.className = 'sec-continued active';
+      header.innerHTML = '<div class="sec-title">Geselecteerde Projecten (vervolg)</div>';
+      header.dataset.injected = '1';
+      firstOverflow.parentNode.insertBefore(header, firstOverflow);
+    }
+
+    function cleanup() {
+      document.querySelectorAll('[data-injected="1"]').forEach(n => n.remove());
+    }
+
+    window.addEventListener('beforeprint', prepareForPrint);
+    window.addEventListener('afterprint', cleanup);
+  </script>
+</body>
+</html>
