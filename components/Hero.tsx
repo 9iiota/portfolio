@@ -24,7 +24,7 @@ export default function Hero()
 
       <p className="hero-bio rise d4">
         I build Chrome extensions, automation scripts, internal tools, and small applications.
-        Third-year Informatica student at Rotterdam University of Applied Sciences. I&apos;ve shipped production
+        Fourth-year Informatica student at Rotterdam University of Applied Sciences. I&apos;ve shipped production
         work for a Mendix consultancy and an e-commerce business I ran.
       </p>
 

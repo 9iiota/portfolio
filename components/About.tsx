@@ -41,7 +41,7 @@ export default function About()
           <aside className="about-facts">
             <div className="row"><div className="k">Location</div><div className="v">Rotterdam, NL</div></div>
             <div className="row"><div className="k">Education</div><div className="v">Rotterdam University of Applied Sciences</div></div>
-            <div className="row"><div className="k">Year</div><div className="v">3rd year, Informatica</div></div>
+            <div className="row"><div className="k">Year</div><div className="v">4th year, Informatica</div></div>
             <div className="row"><div className="k">Languages</div><div className="v">NL, EN, TR, JP</div></div>
             <div className="row"><div className="k">Focus</div><div className="v">Tools, automation, applications</div></div>
             <div className="row"><div className="k">Open to</div><div className="v">Internships and full-time positions</div></div>

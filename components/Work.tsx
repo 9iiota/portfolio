@@ -21,7 +21,8 @@ const projects: Project[] = [
       'Capstone research project comparing Random Forest, XGBoost, and LSTM for early delirium detection in ICU patients using structured EHR data from MIMIC-IV. Builds a prediction ensemble, evaluates lead time against standard CAM-ICU screening cycles, and includes SHAP-based interpretability and demographic fairness analysis. Team of four. Targeting publication as a scientific paper.',
     stack: ['Python', 'scikit-learn', 'XGBoost', 'PyTorch', 'SHAP', 'pandas'],
     status: 'school',
-    linkLabel: 'Research in progress',
+    link: 'https://github.com/Hadyalt/AI_In_Healthcare_Capstone_Project',
+    linkLabel: 'View on GitHub',
     feature: true,
   },
   {
@@ -88,13 +89,15 @@ const projects: Project[] = [
   },
 ];
 
-function StatusPill({ s }: { s: Status }) {
+function StatusPill({ s }: { s: Status })
+{
   if (s === 'live') return <span className="work-status"><span className="dot" />Live</span>;
   if (s === 'archived') return <span className="work-status archived"><span className="dot" />Archived</span>;
   return <span className="work-status school"><span className="dot" />Coursework</span>;
 }
 
-export default function Work() {
+export default function Work()
+{
   return (
     <section id="work" className="section">
       <div className="section-head">
@@ -105,33 +108,33 @@ export default function Work() {
             Production work, side projects, and university coursework.
           </p>
         </div>
-        <span className="meta">{projects.length} projects</span>
+        <span className="meta">{ projects.length } projects</span>
       </div>
 
       <div className="work-list">
-        {projects.map((p) => (
-          <article key={p.num} className={`work-card ${p.feature ? 'feature' : ''}`}>
+        { projects.map((p) => (
+          <article key={ p.num } className={ `work-card ${ p.feature ? 'feature' : '' }` }>
             <div className="work-top">
-              <span className="work-num">{p.num} · {p.year}</span>
-              <StatusPill s={p.status} />
+              <span className="work-num">{ p.num } · { p.year }</span>
+              <StatusPill s={ p.status } />
             </div>
-            <h3>{p.name}</h3>
-            <p className="lede">{p.lede}</p>
+            <h3>{ p.name }</h3>
+            <p className="lede">{ p.lede }</p>
             <div className="work-stack">
-              {p.stack.map((s) => <span key={s} className="chip">{s}</span>)}
+              { p.stack.map((s) => <span key={ s } className="chip">{ s }</span>) }
             </div>
             <div className="work-foot">
-              <span>{p.year}</span>
-              {p.link ? (
-                <a href={p.link} target="_blank" rel="noopener noreferrer">
-                  {p.linkLabel ?? 'View project'} <span className="arrow">↗</span>
+              <span>{ p.year }</span>
+              { p.link ? (
+                <a href={ p.link } target="_blank" rel="noopener noreferrer">
+                  { p.linkLabel ?? 'View project' } <span className="arrow">↗</span>
                 </a>
               ) : (
-                <span>{p.linkLabel ?? '—'}</span>
-              )}
+                <span>{ p.linkLabel ?? '—' }</span>
+              ) }
             </div>
           </article>
-        ))}
+        )) }
       </div>
     </section>
   );
